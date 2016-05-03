@@ -1,2 +1,0 @@
-# RIP
-RIP simulator

@@ -1,0 +1,32 @@
+
+======================== FOR YOUR CONVENIENCE ============================ 
+RUN ON PARIS (P) (IP: .32):
+./router 3100 vienna:3101:2 beijing:3105:10 sofia:3104:4
+RUN ON VIENNA (V) (IP: .31):
+./router 3101 paris:3100:2 warsaw:3103:2 sofia:3104:3 
+RUN ON WARSAW (W) (IP: .36):
+./router 3103 vienna:3101:2 beijing:3105:3 
+RUN ON SOFIA (S) (IP: .30):
+./router 3104 vienna:3101:3 beijing:3105:4 paris:3100:4
+RUN ON BEIJING (B) (IP: .39):
+./router 3105 paris:3100:10 warsaw:3103:3 sofia:3104:4
+
+TOPOLOGY:
+                10
+ +-------------------------------+
+ |                               |
++++          2      +-+     3    |
+|P|-+       +-------|W|----+     |
++++ |       |       +-+    |    +v+
+ |  | 2    +++             +----|B|
+ |  +------|V|                  +^+
+ |         +++                   |
+ |          | 3                4 |
+ |          |     +-+            |
+ |          +-----|S|------------+
+ | 4              +-+
+ |                 |
+ +-----------------+
+
+
+
