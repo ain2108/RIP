@@ -85,7 +85,7 @@ void printRoutingTable(Interface * routingTable, char * myIP, unsigned short myP
   memset(timestamp, 0, IP_LENGTH);
   sprintf(timestamp, "%.2d:%.2d:%.2d", temp->tm_hour, temp->tm_min, temp->tm_sec );
 
-  fprintf(stdout, "Node %s:%d @ %s\n\n", myIP, myPort, timestamp);
+  fprintf(stdout, "Node %s:%d @ %s\n", myIP, myPort, timestamp);
   fprintf(stdout, "host\t\tport\tdistance\tinterface\n");
   int i = 0;
   for(i = 0; 1; i++){
@@ -96,6 +96,7 @@ void printRoutingTable(Interface * routingTable, char * myIP, unsigned short myP
 	    routingTable[i].hops,
 	    routingTable[i].id);
   }
+  fprintf(stdout, "\n");
   // free(temp);
   return;
 }
@@ -185,15 +186,15 @@ int applyChanges(TableEntry * routingTable, Interface * infaces,
     int posInfaces = posByIPIF(infaces, IP);
     pthread_rwlock_unlock(face_lock);
     
-    fprintf(stderr, "POSITION: %d\n", posInfaces);
+    //    fprintf(stderr, "POSITION: %d\n", posInfaces);
 
     pthread_rwlock_wrlock(table_lock);
     if(posInfaces < 0){
-      fprintf(stderr, "unknown\n");
+      // fprintf(stderr, "unknown\n");
       routingTable[posInTable].hops = distance;             // Distance 
       routingTable[posInTable].id = peerFaceID;             // Interface ID
     }else{
-      fprintf(stderr, "updated to %d\n", infaces[posInfaces].hops);
+      // fprintf(stderr, "updated to %d\n", infaces[posInfaces].hops);
       routingTable[posInTable].hops = infaces[posInfaces].hops;         
       routingTable[posInTable].id = infaces[posInfaces].id;       
     }
